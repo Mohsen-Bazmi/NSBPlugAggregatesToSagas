@@ -1,0 +1,79 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/mohsen/Desktop/EndPoint/EndPoint.csproj": {}
+  },
+  "projects": {
+    "/home/mohsen/Desktop/EndPoint/EndPoint.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/mohsen/Desktop/EndPoint/EndPoint.csproj",
+        "projectName": "EndPoint",
+        "projectPath": "/home/mohsen/Desktop/EndPoint/EndPoint.csproj",
+        "packagesPath": "/home/mohsen/.nuget/packages/",
+        "outputPath": "/home/mohsen/Desktop/EndPoint/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/home/mohsen/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Nservicebus": {
+              "target": "Package",
+              "version": "[7.3.0, )"
+            },
+            "Nservicebus.Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Nservicebus.RabbitMQ": {
+              "target": "Package",
+              "version": "[5.1.2, )"
+            },
+            "PrivateSetterContractResolver": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.201/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

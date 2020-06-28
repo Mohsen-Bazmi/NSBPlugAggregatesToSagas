@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "KAPZ6rkui7MyGpyFO8AwGX8jfdUcMkjqyWjjAes13Bx//3GsYqT5tzHpBOPTKdqJYpwekvxwsFkdbppnuMFh4g==",
+  "success": true,
+  "projectFilePath": "/home/mohsen/Desktop/NSBPlugAggregatesToSagas/Commands/Commands.csproj",
+  "expectedPackageFiles": [
+    "/usr/share/dotnet/sdk/NuGetFallbackFolder/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "/usr/share/dotnet/sdk/NuGetFallbackFolder/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
