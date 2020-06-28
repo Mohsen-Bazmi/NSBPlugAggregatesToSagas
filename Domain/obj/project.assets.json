@@ -185,11 +185,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/mohsen/Desktop/EndPoint/Domain/Domain.csproj",
+      "projectUniqueName": "/home/mohsen/Desktop/NSBPlugAggregatesToSagas/Domain/Domain.csproj",
       "projectName": "Domain",
-      "projectPath": "/home/mohsen/Desktop/EndPoint/Domain/Domain.csproj",
+      "projectPath": "/home/mohsen/Desktop/NSBPlugAggregatesToSagas/Domain/Domain.csproj",
       "packagesPath": "/home/mohsen/.nuget/packages/",
-      "outputPath": "/home/mohsen/Desktop/EndPoint/Domain/obj/",
+      "outputPath": "/home/mohsen/Desktop/NSBPlugAggregatesToSagas/Domain/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/share/dotnet/sdk/NuGetFallbackFolder"

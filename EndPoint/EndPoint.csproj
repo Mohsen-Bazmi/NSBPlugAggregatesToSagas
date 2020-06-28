@@ -10,6 +10,12 @@
     <PackageReference Include="Nservicebus.RabbitMQ" Version="5.1.2" />
     <PackageReference Include="Nservicebus.Newtonsoft.Json" Version="2.2.0" />
     <PackageReference Include="PrivateSetterContractResolver" Version="2.1.0" />
+    <PackageReference Include="NServiceBus.RavenDB" Version="6.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Commands\Commands.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
 </Project>
