@@ -9,7 +9,7 @@ namespace EndPoint
 {
     class Program
     {
-        const string endpointName = "NSBPlugAggregatesToSagas";
+        const string endpointName = "NSBPlugAggregatesToSagas.EndPoint";
         static async Task Main(string[] args)
         {
             Console.Title=endpointName;

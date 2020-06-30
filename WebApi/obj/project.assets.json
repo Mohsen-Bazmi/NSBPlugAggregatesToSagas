@@ -701,6 +701,16 @@
             "rid": "win"
           }
         }
+      },
+      "Commands/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Commands.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Commands.dll": {}
+        }
       }
     }
   },
@@ -1915,10 +1925,16 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Commands/1.0.0": {
+      "type": "project",
+      "path": "../Commands/Commands.csproj",
+      "msbuildProject": "../Commands/Commands.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "Commands >= 1.0.0",
       "NServiceBus.Extensions.Hosting >= 1.0.1",
       "NServiceBus.Newtonsoft.Json >= 2.2.0",
       "NServiceBus.RabbitMQ >= 5.2.0",
@@ -1953,7 +1969,11 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/mohsen/Desktop/NSBPlugAggregatesToSagas/Commands/Commands.csproj": {
+              "projectPath": "/home/mohsen/Desktop/NSBPlugAggregatesToSagas/Commands/Commands.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
