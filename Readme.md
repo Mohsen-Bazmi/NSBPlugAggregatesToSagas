@@ -1,4 +1,4 @@
-The proof of concept indicates how to plug existing aggregates roots into NServiceBus sagas.
+The proof of concept indicates how to plug existing aggregates into NServiceBus sagas.
 
 **Prerequisites**
 - Docker
