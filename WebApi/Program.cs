@@ -38,7 +38,7 @@ namespace WebApi
                         t.Assembly == typeof(RegisterUser).Assembly
                         || t.Assembly == typeof(RenameUser).Assembly);
 
-
+                    epConfig.Conventions().DefiningEventsAs(t=>t.Assembly == typeof(Domain.Events.UserRegistered).Assembly);
                 //    epConfig.SendOnly();
                 epConfig.EnableInstallers();
 

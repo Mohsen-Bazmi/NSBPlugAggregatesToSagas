@@ -31,14 +31,19 @@ namespace WebApi.Controllers
         public IEnumerable<UserViewModel> Get()
         => users.RegisteredUsers;
 
-        [HttpGet("RegisterNewRandomUser")]
+        [HttpPost("RegisterNewRandomUser")]
         public async Task<IActionResult> RegisterNewRandomUser()
         {
             logger.LogInformation(nameof(RegisterNewRandomUser));
             await session.Send(new Commands.RegisterUser { UserId = Guid.NewGuid() }).ConfigureAwait(false);
             return RedirectToAction(nameof(Get));
         }
-
-
+        [HttpPost("Rename")]
+        public async Task<IActionResult> Rename(UserRenameDto dto)
+        {
+            logger.LogInformation(nameof(RegisterNewRandomUser));
+            await session.Send(new Commands.RenameUser { UserId = Guid.NewGuid(), NewUserName = dto.NewName }).ConfigureAwait(false);
+            return RedirectToAction(nameof(Get));
+        }
     }
 }

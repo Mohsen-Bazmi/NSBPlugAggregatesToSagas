@@ -9,12 +9,10 @@ namespace WebApi
     {
         public List<UserViewModel> RegisteredUsers { get; set; } = new List<UserViewModel>();
 
-        public Task Handle(Events.UserRegistered message, IMessageHandlerContext context)
+        public Task Handle(Events.UserRegistered message, IMessageHandlerContext _)
         {
             RegisteredUsers.Add(new UserViewModel { Id = message.Id });
             return Task.CompletedTask;
         }
-
-
     }
 }
