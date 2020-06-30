@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Commands;
 using Domain;
+using EndPoint.NservicebusExtensions;
 using NServiceBus;
 
 namespace EndPoint.Sagas
@@ -12,13 +13,13 @@ namespace EndPoint.Sagas
         public Task Handle(RegisterUser message, IMessageHandlerContext context)
         {
             User = User.Register(message.UserId);
-            return Task.CompletedTask;
+            return context.PublishDomainEventsOf(User);
         }
 
         public Task Handle(RenameUser message, IMessageHandlerContext context)
         {
             User.Rename(message.NewUserName);
-            return Task.CompletedTask;
+            return context.PublishDomainEventsOf(User);
         }
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<UserSagaData> mapper)

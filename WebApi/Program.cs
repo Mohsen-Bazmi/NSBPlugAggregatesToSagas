@@ -19,17 +19,18 @@ namespace WebApi
             CreateHostBuilder(args).Build().Run();
         }
         const string endpointName = "WebApiGateway.EndPoint";
-
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
             .UseNServiceBus(hostBuilderContext =>
                {
+                   const string rabbitmqConnectionString = "host=localhost;username=guest;password=guest";
                    var epConfig = new EndpointConfiguration(endpointName);
 
                    epConfig.UseSerialization<NewtonsoftSerializer>();
 
                    var transport = epConfig.UseTransport<RabbitMQTransport>()
-                                    .ConnectionString(connectionString: "host=localhost;username=guest;password=guest");
+                                    .UseConventionalRoutingTopology()
+                                    .ConnectionString(rabbitmqConnectionString);
                    var routing = transport.Routing();
 
                    routing.RouteToEndpoint(typeof(RegisterUser).Assembly, "NSBPlugAggregatesToSagas.EndPoint");
@@ -38,7 +39,8 @@ namespace WebApi
                         || t.Assembly == typeof(RenameUser).Assembly);
 
 
-                   epConfig.SendOnly();
+                //    epConfig.SendOnly();
+                epConfig.EnableInstallers();
 
 
                    return epConfig;

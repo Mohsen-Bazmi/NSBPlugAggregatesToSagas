@@ -16,6 +16,7 @@ namespace EndPoint
             var epConfig = new EndpointConfiguration(endpointName);
             
             var transport = epConfig.UseTransport<RabbitMQTransport>()
+                                    .UseConventionalRoutingTopology()
                                     .ConnectionString(connectionString: "host=localhost;username=guest;password=guest");
             // var routing = transport.Routing();
             // routing.

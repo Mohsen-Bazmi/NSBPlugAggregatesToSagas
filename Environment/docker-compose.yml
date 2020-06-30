@@ -1,16 +1,16 @@
 version: "3.5"
 services: 
-    sql1:
-        image: "mcr.microsoft.com/mssql/server"
-        hostname: "sql1"
-        environment:
-            ACCEPT_EULA: "Y"
-            MSSQL_PID: "Express"
-            SA_PASSWORD: "P@ssw0rd"
-            # MSSQL_AGENT_ENABLED: "true"  #requires string, not bool
-            MSSQL_TCP_PORT: "1433"
-        ports:
-            - "1433:1433"
+    # sql1:
+    #     image: "mcr.microsoft.com/mssql/server"
+    #     hostname: "sql1"
+    #     environment:
+    #         ACCEPT_EULA: "Y"
+    #         MSSQL_PID: "Express"
+    #         SA_PASSWORD: "P@ssw0rd"
+    #         # MSSQL_AGENT_ENABLED: "true"  #requires string, not bool
+    #         MSSQL_TCP_PORT: "1433"
+    #     ports:
+    #         - "1433:1433"
     rabbitmq:
         container_name: rabbitmq
         image: rabbitmq:management
@@ -19,11 +19,11 @@ services:
         - 5672:5672
         - 25672:25672
         - 15672:15672
-    # ravendb1:
-    #     container_name: ravendb1
-    #     image: ravendb/ravendb
-    #     ports: 
-    #         - 8080:8080
-    #     environment: 
-    #         - RAVEN_Security_UnsecuredAccessAllowed=PublicNetwork
-    #         - RAVEN_ARGS="--Setup.Mode=None"
+    ravendb1:
+        container_name: ravendb1
+        image: ravendb/ravendb
+        ports: 
+            - 8080:8080
+        environment: 
+            - RAVEN_Security_UnsecuredAccessAllowed=PublicNetwork
+            - RAVEN_ARGS="--Setup.Mode=None"

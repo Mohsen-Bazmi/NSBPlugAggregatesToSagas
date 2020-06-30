@@ -9,7 +9,7 @@ namespace EndPoint.NservicebusExtensions
     {
         public static async Task PublishDomainEventsOf(this IPipelineContext context, AggregateRoot aggregate)
         {
-            await Task.WhenAll(aggregate.NewEvents.Select(context.Publish));
+            await Task.WhenAll(aggregate.NewEvents.Select(context.Publish)).ConfigureAwait(false);
             aggregate.ForgetNewEvents();
         }
     }

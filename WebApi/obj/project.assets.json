@@ -711,6 +711,16 @@
         "runtime": {
           "bin/placeholder/Commands.dll": {}
         }
+      },
+      "Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.dll": {}
+        }
       }
     }
   },
@@ -1930,11 +1940,17 @@
       "type": "project",
       "path": "../Commands/Commands.csproj",
       "msbuildProject": "../Commands/Commands.csproj"
+    },
+    "Domain/1.0.0": {
+      "type": "project",
+      "path": "../Domain/Domain.csproj",
+      "msbuildProject": "../Domain/Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Commands >= 1.0.0",
+      "Domain >= 1.0.0",
       "NServiceBus.Extensions.Hosting >= 1.0.1",
       "NServiceBus.Newtonsoft.Json >= 2.2.0",
       "NServiceBus.RabbitMQ >= 5.2.0",
@@ -1972,6 +1988,9 @@
           "projectReferences": {
             "/home/mohsen/Desktop/NSBPlugAggregatesToSagas/Commands/Commands.csproj": {
               "projectPath": "/home/mohsen/Desktop/NSBPlugAggregatesToSagas/Commands/Commands.csproj"
+            },
+            "/home/mohsen/Desktop/NSBPlugAggregatesToSagas/Domain/Domain.csproj": {
+              "projectPath": "/home/mohsen/Desktop/NSBPlugAggregatesToSagas/Domain/Domain.csproj"
             }
           }
         }
