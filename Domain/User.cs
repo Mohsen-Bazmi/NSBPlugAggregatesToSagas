@@ -8,7 +8,7 @@ namespace Domain
         => new User(id);
 
         private User(Guid id) : base(id)
-        { }
+        => AppendEvent(new Events.UserRegistered { Id = id });
 
         public void Rename(string newUserName)
         {

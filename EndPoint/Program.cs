@@ -12,9 +12,9 @@ namespace EndPoint
         const string endpointName = "NSBPlugAggregatesToSagas.EndPoint";
         static async Task Main(string[] args)
         {
-            Console.Title=endpointName;
+            Console.Title = endpointName;
             var epConfig = new EndpointConfiguration(endpointName);
-            
+
             var transport = epConfig.UseTransport<RabbitMQTransport>()
                                     .UseConventionalRoutingTopology()
                                     .ConnectionString(connectionString: "host=localhost;username=guest;password=guest");
@@ -51,7 +51,7 @@ namespace EndPoint
             epConfig.EnableInstallers();
 
 
-             var endpoint = await Endpoint.Create(epConfig).ConfigureAwait(false);
+            var endpoint = await Endpoint.Create(epConfig).ConfigureAwait(false);
 
             await endpoint.Start().ConfigureAwait(false);
             Console.ReadLine();
