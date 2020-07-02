@@ -27,6 +27,12 @@ namespace WebApi
         {
             services.AddSingleton<UserCache>();
             services.AddControllers();
+            services.AddCors(options =>
+            options.AddPolicy("AllowAllPolicy", 
+                    builder => builder.AllowAnyMethod()
+                                      .AllowCredentials()
+                                      .SetIsOriginAllowed(_ => true)
+                                      .AllowAnyHeader()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,12 +43,10 @@ namespace WebApi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
+            app.UseCors("AllowAllPolicy");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

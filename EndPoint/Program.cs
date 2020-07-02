@@ -4,11 +4,41 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NServiceBus;
 using Raven.Client.Documents;
+using Raven.Client.Documents.Operations;
+using Raven.Client.Exceptions;
+using Raven.Client.Exceptions.Database;
+using Raven.Client.ServerWide;
+using Raven.Client.ServerWide.Operations;
 
 namespace EndPoint
 {
     class Program
     {
+        public static async Task EnsureDatabaseExistsAsync(IDocumentStore store, string database = null, bool createDatabaseIfNotExists = true)
+        {
+            database = database ?? store.Database;
+
+            if (string.IsNullOrWhiteSpace(database))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(database));
+
+            try
+            {
+                await store.Maintenance.ForDatabase(database).SendAsync(new GetStatisticsOperation());
+            }
+            catch (DatabaseDoesNotExistException)
+            {
+                if (createDatabaseIfNotExists == false)
+                    throw;
+
+                try
+                {
+                    await store.Maintenance.Server.SendAsync(new CreateDatabaseOperation(new DatabaseRecord(database)));
+                }
+                catch (ConcurrencyException)
+                {
+                }
+            }
+        }
         const string endpointName = "NSBPlugAggregatesToSagas.EndPoint";
         static async Task Main(string[] args)
         {
@@ -33,19 +63,23 @@ namespace EndPoint
             epConfig.Conventions().DefiningEventsAs(type => type.Assembly == typeof(Domain.Events.UserRegistered).Assembly);
 
 
-            var documentStore = new DocumentStore
+            var store = new DocumentStore
             {
                 Urls = new[] { "http://localhost:8080" },
                 Database = endpointName,
             };
             var persistance = epConfig.UsePersistence<RavenDBPersistence>();
             persistance.DoNotSetupDatabasePermissions();
-            documentStore.Initialize();
-            using (documentStore.OpenSession(endpointName))
+            store.Initialize();
+            using (store.OpenSession(endpointName))
             {
-
             }
-            persistance.SetDefaultDocumentStore(documentStore);
+            await EnsureDatabaseExistsAsync(store, endpointName, true);
+            // var compactSettings = new DatabaseRecord(endpointName);
+            // var compactOperation = new CreateDatabaseOperation(compactSettings);
+            // await store.Maintenance.Server.SendAsync(compactOperation).ConfigureAwait(false);
+
+            persistance.SetDefaultDocumentStore(store);
 
 
             epConfig.EnableInstallers();

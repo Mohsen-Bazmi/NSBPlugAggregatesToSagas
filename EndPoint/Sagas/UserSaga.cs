@@ -34,4 +34,34 @@ namespace EndPoint.Sagas
             set => Data.AggregateRoot = value;
         }
     }
+    //----------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------
+    // public class UserSagaData2 : ContainSagaData
+    // {
+    //     public System.Guid UserId { get; set; }
+    //     public string Name { get; set; } = "Anonymous";
+    // }
+    // public class UserSaga2 : Saga<UserSagaData2>
+    //                       , IAmStartedByMessages<RegisterUser>
+    //                       , IHandleMessages<RenameUser>
+    // {
+    //     public Task Handle(RegisterUser message, IMessageHandlerContext context)
+    //     {
+    //         Data.UserId = message.UserId;
+    //         return context.Publish(new Events.UserRegistered { Id = message.UserId });
+    //     }
+
+    //     public Task Handle(RenameUser message, IMessageHandlerContext context)
+    //     {
+    //         Data.Name = message.NewUserName;
+    //         return Task.CompletedTask;
+    //     }
+
+    //     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<UserSagaData2> mapper)
+    //     {
+    //         mapper.ConfigureMapping<RegisterUser>(m => m.UserId).ToSaga(s => s.UserId);
+    //         mapper.ConfigureMapping<RenameUser>(m => m.UserId).ToSaga(s => s.UserId);
+    //     }
+    // }
 }
