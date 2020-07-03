@@ -28,7 +28,7 @@ namespace WebApi
             services.AddSingleton<UserCache>();
             services.AddControllers();
             services.AddCors(options =>
-            options.AddPolicy("AllowAllPolicy", 
+            options.AddPolicy("AllowAllPolicy",
                     builder => builder.AllowAnyMethod()
                                       .AllowCredentials()
                                       .SetIsOriginAllowed(_ => true)

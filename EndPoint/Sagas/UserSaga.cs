@@ -1,18 +1,19 @@
+using System;
 using System.Threading.Tasks;
 using Commands;
 using Domain;
-using EndPoint.NservicebusExtensions;
+using EndPoint.NServiceBusExtensions;
 using NServiceBus;
 
 namespace EndPoint.Sagas
 {
-    public class UserSaga : Saga<UserSagaData>
+    public class UserSaga : Saga<BridgeAggregate<User>.WithId<Guid>>
                           , IAmStartedByMessages<RegisterUser>
                           , IHandleMessages<RenameUser>
     {
         public Task Handle(RegisterUser message, IMessageHandlerContext context)
         {
-            User = User.Register(message.UserId);
+            User = User.Register(message.UserId, message.UserName);
             return context.PublishDomainEventsOf(User);
         }
 
@@ -22,10 +23,10 @@ namespace EndPoint.Sagas
             return context.PublishDomainEventsOf(User);
         }
 
-        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<UserSagaData> mapper)
+        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BridgeAggregate<User>.WithId<Guid>> mapper)
         {
-            mapper.ConfigureMapping<RegisterUser>(m => m.UserId).ToSaga(s => s.AggregateRootId);
-            mapper.ConfigureMapping<RenameUser>(m => m.UserId).ToSaga(s => s.AggregateRootId);
+            mapper.ConfigureMapping<RegisterUser>(m => m.UserId).ToSaga(data => data.AggregateRootId);
+            mapper.ConfigureMapping<RenameUser>(m => m.UserId).ToSaga(data => data.AggregateRootId);
         }
 
         protected User User
@@ -34,34 +35,4 @@ namespace EndPoint.Sagas
             set => Data.AggregateRoot = value;
         }
     }
-    //----------------------------------------------------------------------------------
-    //----------------------------------------------------------------------------------
-    //----------------------------------------------------------------------------------
-    // public class UserSagaData2 : ContainSagaData
-    // {
-    //     public System.Guid UserId { get; set; }
-    //     public string Name { get; set; } = "Anonymous";
-    // }
-    // public class UserSaga2 : Saga<UserSagaData2>
-    //                       , IAmStartedByMessages<RegisterUser>
-    //                       , IHandleMessages<RenameUser>
-    // {
-    //     public Task Handle(RegisterUser message, IMessageHandlerContext context)
-    //     {
-    //         Data.UserId = message.UserId;
-    //         return context.Publish(new Events.UserRegistered { Id = message.UserId });
-    //     }
-
-    //     public Task Handle(RenameUser message, IMessageHandlerContext context)
-    //     {
-    //         Data.Name = message.NewUserName;
-    //         return Task.CompletedTask;
-    //     }
-
-    //     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<UserSagaData2> mapper)
-    //     {
-    //         mapper.ConfigureMapping<RegisterUser>(m => m.UserId).ToSaga(s => s.UserId);
-    //         mapper.ConfigureMapping<RenameUser>(m => m.UserId).ToSaga(s => s.UserId);
-    //     }
-    // }
 }

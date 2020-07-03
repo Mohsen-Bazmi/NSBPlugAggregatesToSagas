@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Domain;
 using NServiceBus;
 
-namespace EndPoint.NservicebusExtensions
+namespace EndPoint.NServiceBusExtensions
 {
     public static class NservicebusDDDExtensions
     {

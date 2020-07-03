@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Commands;
-using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
@@ -25,24 +22,29 @@ namespace WebApi.Controllers
             this.logger = logger;
         }
 
-
-
         [HttpGet]
         public IEnumerable<UserViewModel> Get()
         => users.RegisteredUsers;
 
-        [HttpPost("RegisterNewRandomUser")]
-        public async Task<IActionResult> RegisterNewRandomUser()
+        [HttpPost("{userName}")]
+        public async Task<IActionResult> Register(string userName)
         {
-            logger.LogInformation(nameof(RegisterNewRandomUser));
-            await session.Send(new Commands.RegisterUser { UserId = Guid.NewGuid() }).ConfigureAwait(false);
+            await session.Send(new Commands.RegisterUser
+            {
+                UserId = Guid.NewGuid(),
+                UserName = userName
+            }).ConfigureAwait(false);
             return RedirectToAction(nameof(Get));
         }
+
         [HttpPost("Rename")]
         public async Task<IActionResult> Rename(UserRenameDto dto)
         {
-            logger.LogInformation(nameof(RegisterNewRandomUser));
-            await session.Send(new Commands.RenameUser { UserId = Guid.NewGuid(), NewUserName = dto.NewName }).ConfigureAwait(false);
+            await session.Send(new Commands.RenameUser
+            {
+                UserId = Guid.NewGuid(),
+                NewUserName = dto.NewName
+            }).ConfigureAwait(false);
             return RedirectToAction(nameof(Get));
         }
     }

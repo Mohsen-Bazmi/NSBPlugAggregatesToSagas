@@ -23,7 +23,7 @@ dotnet run`
 
 To Register a new random user open the developer tools in your browser and fetch the following link:
 ```js
-fetch("https://localhost:5001/User/RegisterNewRandomUser",{method:'POST'}).then(res=>res.json()).then(console.log);
+fetch("https://localhost:5001/User/YourUserName",{method:'POST'}).then(res=>res.json()).then(console.log);
 ```
 Then to see the domain event reaction:
 ```js
