@@ -7,17 +7,17 @@ The proof of concept indicates how to plug existing aggregates into NServiceBus 
 
 **How to run this**
 
-In one terminal run these commands:
-`cd Environment
-docker-compose up`
+In one terminal run these commands:  
+`cd Environment`  
+`docker-compose up`
 
-In another terminal
-`cd WeApi
-dotnet run`
+In another terminal  
+`cd WeApi`  
+`dotnet run`
 
-And in yet another terminal
-`cd EndPoint
-dotnet run`
+And in yet another terminal  
+`cd EndPoint`  
+`dotnet run`
 
 **How to test it**
 
