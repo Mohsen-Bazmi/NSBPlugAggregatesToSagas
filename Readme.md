@@ -1,6 +1,6 @@
-**[Plug existing aggregates into NServiceBus sagas](https://medium.com/@mohsen.bazmi/plug-your-existing-domain-models-into-nservicebus-sagas-46415dbd25b2)**  
+**Plug existing aggregates into NServiceBus sagas**  
+The code samples for [this](https://medium.com/@mohsen.bazmi/plug-your-existing-domain-models-into-nservicebus-sagas-46415dbd25b2) article.  
 
-![](SpaceX_Crew_Dragon.jpg)  
 
 **Prerequisites**
 - Docker
