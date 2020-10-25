@@ -1,5 +1,5 @@
 **Plug existing aggregates into NServiceBus sagas**  
-The code samples for [this](https://medium.com/@mohsen.bazmi/plug-your-existing-domain-models-into-nservicebus-sagas-46415dbd25b2) article.  
+The code samples for [this](https://dev.to/vlerx/plug-your-existing-domain-models-into-nservicebus-sagas-4a1p) article.  
 
 
 **Prerequisites**
